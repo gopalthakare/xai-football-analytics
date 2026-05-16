@@ -13,6 +13,11 @@ st.set_page_config(
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSS_PATH = os.path.join(BASE_DIR, "style.css")
 
+# Google Search Console verification
+st.markdown('<meta name="google-site-verification" content="-6CECMNOpUVkGgAZHeI2h-UNyzCjU40HCvkQVCui_Yo" />', unsafe_allow_html=True)
+st.markdown('<meta name="viewport" content="width=device-width, initial-scale=1.0">', unsafe_allow_html=True)
+
+# Load CSS
 with open(CSS_PATH, encoding='utf-8') as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
@@ -56,10 +61,14 @@ st.markdown(get_theme_styles(), unsafe_allow_html=True)
 # ================================
 
 # Hero Section
-st.markdown("""
+theme = st.session_state.get('theme', 'dark')
+text_color = '#1a1a1a' if theme == 'light' else 'white'
+subtitle_color = '#1a1a1a' if theme == 'light' else 'rgba(255, 255, 255, 0.8)'
+
+st.markdown(f"""
     <div style="text-align: center; padding: 0.2rem 0 0.3rem 0;">
-        <h1 style="font-size: 3.5rem; margin-bottom: 0.3rem;">⚽ XAI Football Analytics Suite</h1>
-        <p class="hero-subtitle" style="font-size: 1.3rem; margin-bottom: 0.5rem;">
+        <h1 style="font-size: 3.5rem; margin-bottom: 0.3rem; display: inline-block; white-space: normal; word-wrap: break-word; background: none; -webkit-text-fill-color: {text_color}; color: {text_color};">⚽ XAI Football Analytics Suite</h1>
+        <p class="hero-subtitle" style="font-size: 1.3rem; margin-bottom: 0.5rem; color: {subtitle_color};">
             AI-Powered Player Performance, Injury Risk & Match Outcome Prediction<br>
             <span style="color: #667eea;">Powered by SHAP & LIME Explanations</span>
         </p>

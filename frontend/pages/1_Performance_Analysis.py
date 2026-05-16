@@ -52,10 +52,14 @@ with st.sidebar:
 st.markdown(get_theme_styles(), unsafe_allow_html=True)
 
 # Header
-st.markdown("""
+theme = st.session_state.get('theme', 'dark')
+text_color = '#1a1a1a' if theme == 'light' else 'white'
+subtitle_color = '#1a1a1a' if theme == 'light' else 'rgba(255, 255, 255, 0.8)'
+
+st.markdown(f"""
     <div style="text-align: center; padding: 2rem 0;">
-        <h1>📈 Player Performance Prediction</h1>
-        <p class="page-subtitle" style="font-size: 1.2rem;">
+        <h1 style="background: none; -webkit-text-fill-color: {text_color}; color: {text_color}; display: inline-block; white-space: normal; word-wrap: break-word; font-size: 2.5rem; margin: 0; font-weight: 700;">📈 Player Performance Prediction</h1>
+        <p class="page-subtitle" style="font-size: 1.2rem; color: {subtitle_color};">
             Predict player performance using ML models with XAI explanations
         </p>
     </div>
@@ -75,11 +79,8 @@ if not players:
         </div>
     """, unsafe_allow_html=True)
     st.info("""
-    **To start the backend:**
-    1. Open a new terminal
-    2. Activate virtual environment: `venv\\Scripts\\activate`
-    3. Run: `uvicorn backend.main:app --reload`
-    4. Backend should be available at: http://127.0.0.1:8000
+    **The backend API is waking up.** On free hosting, the first request can take up to 30 seconds.
+    Please refresh the page in a moment.
     """)
     st.stop()
 
