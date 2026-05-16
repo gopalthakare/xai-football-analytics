@@ -2,7 +2,10 @@ import os
 import requests
 from typing import List, Dict, Any
 
-_backend = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
+_backend = os.environ.get(
+    "BACKEND_URL",
+    "https://xai-football-analytics-ht3v.onrender.com"
+)
 BASE = _backend.rstrip("/") + "/api"
 TIMEOUT = 30  # Render free tier cold starts can take ~30s
 
